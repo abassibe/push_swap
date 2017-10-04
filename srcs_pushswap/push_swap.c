@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 05:43:30 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/03 05:54:55 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/10/04 06:13:21 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		check_double(t_swap *e)
 		while (j < e->nb_max)
 		{
 			if (e->tab[i] == e->tab[j])
-				ft_error("error");
+				ft_error("error1");
 			j++;
 		}
 		i++;
@@ -70,6 +70,8 @@ static t_swap	*init_struct(int ac)
 		ft_error("error malloc");
 	if (!(e->tab = (int *)ft_memalloc(sizeof(int) * ac)))
 		ft_error("error malloc");
+	if (!(e->save_tab = (int *)ft_memalloc(sizeof(int) * ac)))
+		ft_error("error malloc");
 	if (!(e->buff = (int *)ft_memalloc(sizeof(int) * ac)))
 		ft_error("error malloc");
 	return (e);
@@ -78,7 +80,6 @@ static t_swap	*init_struct(int ac)
 int		main(int ac, char **av)
 {
 	t_swap	*e;
-	char	*str;
 	int		i;
 
 	if (ac < 2)
@@ -93,5 +94,7 @@ int		main(int ac, char **av)
 		e->nba++;
 	}
 	check_double(e);
+	ft_memcpy(e->save_tab, e->tab, sizeof(e->tab));
+	algo(e, 0);
 	return (1);
 }

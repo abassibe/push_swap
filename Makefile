@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/10/03 05:45:39 by abassibe         ###   ########.fr        #
+#    Updated: 2017/10/04 05:51:24 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ SRCS =	checker.c \
 		utils.c
 
 SRCS2 = push_swap.c \
+		ope.c \
+		ope2.c \
+		algo.c
 
 OBJS = $(SRCS:.c=.o)
 
