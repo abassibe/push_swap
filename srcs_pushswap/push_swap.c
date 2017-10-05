@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 05:43:30 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/04 06:13:21 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/10/05 06:16:22 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ static void		check_double(t_swap *e)
 static t_swap	*init_struct(int ac)
 {
 	t_swap	*e;
+	int		i;
 
+		i = 0;
 	if (!(e = (t_swap *)ft_memalloc(sizeof(t_swap))))
 		ft_error("error malloc");
 	if (!(e->tab = (int *)ft_memalloc(sizeof(int) * ac)))
@@ -74,27 +76,35 @@ static t_swap	*init_struct(int ac)
 		ft_error("error malloc");
 	if (!(e->buff = (int *)ft_memalloc(sizeof(int) * ac)))
 		ft_error("error malloc");
+	if (!(e->tmp_tab = (int *)ft_memalloc(sizeof(int) * ac)))
+		ft_error("error malloc");
+	while (i < 999)
+		e->str[i++] = 0;
 	return (e);
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_swap	*e;
 	int		i;
 
 	if (ac < 2)
 		return (0);
-	e = init_struct(ac - 1);
+	e = init_struct(ac + 1);
 	e->nb_max = ac - 1;
 	check_numbers(ac, av);
 	i = -1;
 	while (++i < ac - 1)
 	{
 		e->tab[i] = ft_atoi(av[i + 1]);
+		e->tmp_tab[i] = e->tab[i];
 		e->nba++;
 	}
+	e->tmp_nba = e->nba;
 	check_double(e);
-	ft_memcpy(e->save_tab, e->tab, sizeof(e->tab));
-	algo(e, 0);
+	ft_memcpy(e->save_tab, e->tab, e->nb_max * sizeof(int));
+	ft_memcpy(e->tmp_tab, e->tab, e->nb_max * sizeof(int));
+	assign_func(e);
+	recurs(e);
 	return (1);
 }
