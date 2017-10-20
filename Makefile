@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/10/04 05:51:24 by abassibe         ###   ########.fr        #
+#    Updated: 2017/10/06 03:17:13 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,10 @@ $(NAME2): $(OBJS2)
 
 clean:
 	@make -C libft clean
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS) $(OBJS2)
 
 fclean: clean
 	@make -C libft fclean
-	@rm -rf libft/libft.a $(NAME)
+	@rm -rf libft/libft.a $(NAME) $(NAME2)
 
 re: fclean all

@@ -6,11 +6,11 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 05:43:30 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/20 05:31:09 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/10/14 02:54:58 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "includes/push_swap.h"
 
 int				ft_error(const char *str)
 {
@@ -84,9 +84,54 @@ void			aff_tab(t_swap *e)
 	i = 0;
 	while (i < e->nb_max)
 	{
-		printf("a = [%d] | b = [%d]\n", e->tab[i], e->buff[i]);
+		printf("a = [%d] | b = [%d] // i = %d\n", e->tab[i], e->buff[i], i);
 		i++;
 	}
+}
+
+void			algo1(t_swap *e)
+{
+	int		i;
+
+	i = e->nbb;
+	if (e->nba < 1)
+		return ;
+	while (i > 0)
+	{
+		e->buff[i] = e->buff[i - 1];
+		i--;
+	}
+	e->buff[0] = e->tab[0];
+	while (i < e->nba)
+	{
+		e->tab[i] = e->tab[i + 1];
+		i++;
+	}
+	e->nba--;
+	e->nbb++;
+	e->tab[e->nba] = 0;
+	aff_tab(e);
+}
+
+void			algo(t_swap *e)
+{
+	int		tmp;
+	int		i;
+
+	if (e->nbb < 2)
+		return ;
+	i = e->nbb - 1;
+	tmp = e->buff[i];
+	while (i > 0)
+	{
+		e->buff[i] = e->buff[i - 1];
+		i--;
+	}
+	e->buff[0] = tmp;
+	e->count++;
+	write (1, "rrb\n", 4);
+//	dprintf(e->fd, "rev rot b :\n");
+	aff_tab(e);
 }
 
 int				main(int ac, char **av)
@@ -105,9 +150,15 @@ int				main(int ac, char **av)
 		e->tab[i] = ft_atoi(av[i + 1]);
 		e->nba++;
 	}
+	aff_tab(e);
+	printf("--------------------------------------------\n");
 	check_double(e);
+	algo1(e);
+	printf("--------------------------------------------\n");
+	algo1(e);
+	printf("--------------------------------------------\n");
 	algo(e);
-//	aff_tab(e);
-//	printf("%d\n", e->count);
+	printf("--------------------------------------------\n");
+	algo(e);
 	return (1);
 }
