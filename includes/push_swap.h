@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 04:12:59 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/18 05:02:03 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/10/26 04:09:06 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@ typedef struct		s_swap
 	int				nba;
 	int				nbb;
 	int				nb_max;
-	int				hig_a;
+	int				hig;
 	int				low_b;
 	int				count;
+	int				sa;
+	int				sb;
+	int				pa;
+	int				pb;
+	int				ra;
+	int				rb;
+	int				rra;
+	int				rrb;
 }					t_swap;
 
 void				swap_a(t_swap *e);

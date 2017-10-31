@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 03:22:40 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/20 05:08:26 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/10/31 05:51:22 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void	algo(t_swap *e)
 	}
 }
 */
-
+/*
 int		byte_value(int nb, int i)
 {
 	return ((nb >> i) & 1);
@@ -232,37 +232,253 @@ int		max_byte(int *tab, int nb)
 	return (ret);
 }
 
+int		first_parce(t_swap *e, int byte)
+{
+	int		i;
+
+	i = -1;
+	while (++i < e->nb_max)
+	{
+		if (!byte_value(e->tab[0], byte))
+			push_b(e);
+		else
+			rotate_a(e);
+	}
+	return (e->nba);
+}
+
+int		a_is_sorted(t_swap *e)
+{
+	int		i;
+
+	i = 0;
+	while (i < e->nba - 1)
+	{
+		if (e->tab[i] > e->tab[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int		get_higther(t_swap *e)
+{
+	int		i;
+	int		hightest;
+	int		ret;
+
+	i = -1;
+	ret = 0;
+	hightest = -2147483648;
+	while (++i < e->nba)
+		if (e->tab[i] > hightest)
+		{
+			hightest = e->tab[i];
+			ret = i;
+		}
+	e->hig = hightest;
+	return (ret);
+}
+
+
+void	sort_a(t_swap *e, int nb_elem)
+{
+	int		tmp;
+	int		ind;
+
+	tmp = nb_elem;
+	while (nb_elem > 0)
+	{
+		if (a_is_sorted(e))
+			break ;
+		if (tmp <= 1)
+		{
+			ind = get_higther(e);
+			if (ind > e->nba / 2)
+				while (e->tab[e->nba - 1] != e->hig)
+					rev_rot_a(e);
+			else
+				while (e->tab[e->nba - 1] != e->hig)
+					rotate_a(e);
+			if (a_is_sorted(e))
+				break ;
+			nb_elem--;
+			tmp = nb_elem;
+		}
+		if (e->tab[0] > e->tab[1])
+			swap_a(e);
+		if (a_is_sorted(e))
+			break ;
+		rotate_a(e);
+		tmp--;
+	}
+}
+
 void	algo(t_swap *e)
 {
 	int		i;
-	int		j;
-	int		nba;
-	int		nbb;
 	int		byte;
+	int		nbb;
+	int		pushed;
 
-	j = -1;
 	byte = max_byte(e->tab, e->nb_max);
-	while (++j < byte + 1)
+	sort_a(e, first_parce(e, byte));
+	byte--;
+	pushed = 0;
+	while (!check_sort(e))
 	{
-		nba = e->nba;
 		i = -1;
-		while (++i < nba)
+		nbb = e->nbb;
+		while (++i < nbb)
 		{
-			if (!byte_value(e->tab[0], j))
+			if (byte_value(e->buff[0], byte))
+			{
+				push_a(e);
+				pushed++;
+			}
+			else
+				rotate_b(e);
+		}
+		sort_a(e, pushed);
+		pushed = 0;
+		byte--;
+	}
+	while (e->nba != e->nb_max)
+		push_a(e);
+}*/
+
+int		get_pivot(int *tab, int nb)
+{
+	int		total;
+	int		closer;
+	int		i;
+	int		ret;
+
+	total = 0;
+	closer = 2147483647;
+	i = -1;
+	ret = 0;
+	while (++i < nb)
+		total += tab[i];
+	total /= nb;
+	i = -1;
+	while (++i < nb)
+		if (ft_abs(total - tab[i]) < closer)
+		{
+			closer = ft_abs(total - tab[i]);
+			ret = tab[i];
+		}
+	return (ret);
+}
+
+int		get_target(t_swap *e)
+{
+	int		i;
+	int		closer;
+	int		ret;
+
+	i = -1;
+	closer = 2147483647;
+	while (++i < e->nbb)
+		if (ft_abs(e->tab[0] - e->buff[i]) < closer)
+		{
+			closer = ft_abs(e->tab[0] - e->buff[i]);
+			ret = e->buff[i];
+		}
+	return (ret);
+}
+
+int		get_up_down(t_swap *e, int target)
+{
+	int		i;
+	int		rb;
+	int		rrb;
+
+	i = 0;
+	rb = 0;
+	rrb = 0;
+	while (e->buff[i] != target)
+	{
+		rb++;
+		i++;
+	}
+	i = e->nbb - 1;
+	while (e->buff[i] != target)
+	{
+		rrb++;
+		i--;
+	}
+	if (rb > rrb)
+		return (1);
+	else
+		return (0);
+}
+
+void	refill_tab(t_swap *e)
+{
+	int		i;
+	int		target;
+
+	i = 0;
+	target = 0;
+	while (e->nba != e->nb_max)
+	{
+		if (e->nba > 1 && e->tab[0] > e->tab[1])
+			swap_a(e);
+		else
+		{
+			target = get_target(e);
+			if (e->buff[0] == target)
+				push_a(e);
+			else if (!get_up_down(e, target))
+				rotate_b(e);
+			else if (get_up_down(e, target))
+				rev_rot_b(e);
+		}
+	}
+}
+
+void	algo(t_swap *e)
+{
+	int		pivot;
+	int		i;
+	int		nb;
+
+	pivot = get_pivot(e->tab, e->nb_max);
+	i = -1;
+	while (++i < e->nb_max)
+	{
+		if (e->tab[0] <= pivot)
+			push_b(e);
+		else
+			rotate_a(e);
+	}
+	i = -1;
+	pivot = get_pivot(e->buff, e->nbb);
+	nb = e->nbb;
+	while (++i < nb)
+	{
+		if (e->buff[0] > pivot)
+			push_a(e);
+		else
+			rotate_b(e);
+	}
+	nb = e->nbb;
+	while (i-- > nb)
+		push_b(e);
+	while (e->nba >= 2)
+	{
+		pivot = get_pivot(e->tab, e->nba);
+		i = -1;
+		nb = e->nba;
+		while (++i < nb)
+		{
+			if (e->tab[0] <= pivot)
 				push_b(e);
 			else
 				rotate_a(e);
 		}
-		i = -1;
-		nbb = e->nbb;
-		while (j > 0 && ++i < nbb)
-		{
-			if (byte_value(e->buff[0], j))
-				push_a(e);
-			else
-				rotate_b(e);
-		}
 	}
-	while (e->nba != e->nb_max)
-		push_a(e);
+	refill_tab(e);
+	aff_tab(e);
 }
