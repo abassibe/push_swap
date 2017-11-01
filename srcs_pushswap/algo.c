@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 03:22:40 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/31 05:51:22 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/01 02:40:47 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -466,7 +466,7 @@ void	algo(t_swap *e)
 	nb = e->nbb;
 	while (i-- > nb)
 		push_b(e);
-	while (e->nba >= 2)
+	while (e->nba > 1)
 	{
 		pivot = get_pivot(e->tab, e->nba);
 		i = -1;

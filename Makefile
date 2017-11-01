@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/10/06 03:17:13 by abassibe         ###   ########.fr        #
+#    Updated: 2017/11/01 01:31:50 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS =	checker.c \
 SRCS2 = push_swap.c \
 		ope.c \
 		ope2.c \
-		algo.c
+		algo.c \
+		visu.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -41,7 +42,8 @@ $(NAME): $(OBJS)
 	@gcc $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
 
 $(NAME2): $(OBJS2)
-	@gcc $(FLAGS) $(OBJS2) libft/libft.a -o $(NAME2)
+	@gcc $(FLAGS) $(OBJS2) libft/libft.a ressources/libmlx.a -o $(NAME2) \
+		-L. -framework OpenGL -framework AppKit
 
 %.o: $(SRCPATH)%.c
 	@gcc $(FLAGS) -c $< -I includes

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 02:35:14 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/26 03:53:58 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/01 03:33:41 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	rotate_a(t_swap *e)
 	e->count++;
 	e->ra++;
 	write (1, "ra\n", 3);
+	visu(e);
 }
 
 void	rotate_b(t_swap *e)
@@ -46,6 +47,7 @@ void	rotate_b(t_swap *e)
 	e->count++;
 	e->rb++;
 	write (1, "rb\n", 3);
+	visu(e);
 }
 
 void	rotate_ab(t_swap *e)
@@ -71,6 +73,7 @@ void	rotate_ab(t_swap *e)
 	e->buff[i] = tmp;
 	e->count++;
 	write (1, "rab\n", 4);
+	visu(e);
 }
 
 void	rev_rot_a(t_swap *e)
@@ -91,6 +94,7 @@ void	rev_rot_a(t_swap *e)
 	e->count++;
 	e->rra++;
 	write (1, "rra\n", 4);
+	visu(e);
 }
 
 void	rev_rot_b(t_swap *e)
@@ -111,6 +115,7 @@ void	rev_rot_b(t_swap *e)
 	e->count++;
 	e->rrb++;
 	write (1, "rrb\n", 4);
+	visu(e);
 }
 
 void	rev_rot_ab(t_swap *e)
@@ -140,5 +145,5 @@ void	rev_rot_ab(t_swap *e)
 	e->buff[0] = tmp;
 	e->count++;
 	write (1, "rrab\n", 4);
+	visu(e);
 }
-

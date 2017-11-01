@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 05:43:30 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/26 04:13:30 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/01 03:34:41 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ int				main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	e = init_struct(ac);
+	e->mlx = mlx_init();
+	e->win = mlx_new_window(e->mlx, 2000, 1000, "Push_swap");
+	e->vimg = mlx_new_image(e->mlx, 2000, 1000);
+	e->img = mlx_get_data_addr(e->vimg, &e->bpp, &e->sl, &e->end);
 	e->nb_max = ac - 1;
 	check_numbers(ac, av);
 	i = -1;
@@ -106,6 +110,7 @@ int				main(int ac, char **av)
 		e->nba++;
 	}
 	check_double(e);
+//	visu(e);
 	algo(e);
 //	aff_tab(e);
 	printf("%d\n", e->count);

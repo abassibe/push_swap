@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 04:12:59 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/26 04:09:06 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/01 01:18:42 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# include "stdio.h"
-#include <fcntl.h>
+# include "../ressources/mlx.h"
+# include <stdio.h>
+# include <fcntl.h>
 
 typedef struct		s_swap
 {
@@ -35,6 +36,13 @@ typedef struct		s_swap
 	int				rb;
 	int				rra;
 	int				rrb;
+	void			*mlx;
+	void			*win;
+	void			*vimg;
+	char			*img;
+	int				bpp;
+	int				sl;
+	int				end;
 }					t_swap;
 
 void				swap_a(t_swap *e);
@@ -50,6 +58,7 @@ void				rev_rot_b(t_swap *e);
 void				rev_rot_ab(t_swap *e);
 int					check_sort(t_swap *e);
 void				algo(t_swap *e);
+void				visu(t_swap *e);
 int					ft_error(const char *str);
 
 void				aff_tab(t_swap *e);
