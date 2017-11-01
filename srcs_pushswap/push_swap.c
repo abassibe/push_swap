@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 05:43:30 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/01 03:34:41 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/01 05:50:51 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ int				main(int ac, char **av)
 		e->nba++;
 	}
 	check_double(e);
-//	visu(e);
 	algo(e);
-//	aff_tab(e);
 	printf("%d\n", e->count);
-	printf("sa = %d, sb = %d, pa = %d, pb = %d, ra = %d, rb = %d, rra = %d, rrb = %d\n", e->sa, e->sb, e->pa, e->pb, e->ra, e->rb, e->rra, e->rrb);
 	return (1);
 }

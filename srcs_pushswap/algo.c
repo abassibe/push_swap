@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 03:22:40 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/01 02:40:47 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/01 05:48:55 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -438,6 +438,149 @@ void	refill_tab(t_swap *e)
 	}
 }
 
+int		pre_sort_b(t_swap *e)
+{
+	int		i;
+	int		pivot;
+	int		nb;
+
+	i = -1;
+	pivot = get_pivot(e->buff, e->nbb);
+	nb = e->nbb;
+	while (++i < nb)
+	{
+		if (e->buff[0] > pivot)
+			push_a(e);
+		else
+			rotate_b(e);
+	}
+	return (i);
+}
+void	algo2(t_swap *e)
+{
+	int		i;
+	int		pivot;
+	int		nb;
+	int		nb2;
+
+	pivot = get_pivot(e->tab, e->nbb);
+	i = -1;
+	nb2 = 0;
+	nb = e->nbb;
+	while (++i < nb - 1)
+	{
+		if (e->tab[0] < pivot)
+		{
+			push_b(e);
+			nb2++;
+		}
+		else
+			rotate_a(e);
+	}
+	while (nb2++ < nb - 1)
+	{
+		rev_rot_a(e);
+		push_b(e);
+	}
+}
+
+void	algo3(t_swap *e)
+{
+	int		i;
+	int		pivot;
+	int		nb;
+	int		nb2;
+
+	i = -1;
+	nb = e->nbb;
+	nb2 = 0;
+	pivot = get_pivot(e->tab, e->nbb);
+
+	while (++i < nb - 1)
+	{
+		if (e->tab[0] < pivot)
+		{
+			push_b(e);
+			nb2++;
+		}
+		else
+			rotate_a(e);
+	}
+	while (nb2++ < nb - 1)
+	{
+		rev_rot_a(e);
+		push_b(e);
+	}
+}
+
+void	algo4_next(t_swap *e, int count)
+{
+	int		i;
+	int		pivot;
+	int		nb;
+
+	i = -1;
+	nb = 0;
+	pivot = get_pivot(e->buff, count);
+	while (++i < count)
+	{
+		if (e->buff[0] > pivot)
+		{
+			push_a(e);
+			nb++;
+		}
+		else
+			rotate_b(e);
+	}
+	while (i-- > nb)
+		rev_rot_b(e);
+}
+
+void	algo4(t_swap *e)
+{
+	int		i;
+	int		pivot;
+	int		nb;
+	int		count;
+
+	pivot = get_pivot(e->tab, e->nba);
+	i = -1;
+	nb = e->nba;
+	count = 0;
+	while (++i < nb)
+	{
+		if (e->tab[0] <= pivot)
+		{
+			push_b(e);
+			count++;
+		}
+		else
+			rotate_a(e);
+	}
+	algo4_next(e, count);
+}
+
+void	algo5(t_swap *e)
+{
+	int		pivot;
+	int		i;
+	int		nb;
+
+	while (e->nba > 1)
+	{
+		pivot = get_pivot(e->tab, e->nba);
+		i = -1;
+		nb = e->nba;
+		while (++i < nb)
+		{
+			if (e->tab[0] <= pivot)
+				push_b(e);
+			else
+				rotate_a(e);
+		}
+	}
+}
+
 void	algo(t_swap *e)
 {
 	int		pivot;
@@ -453,32 +596,15 @@ void	algo(t_swap *e)
 		else
 			rotate_a(e);
 	}
-	i = -1;
-	pivot = get_pivot(e->buff, e->nbb);
+	pre_sort_b(e);
 	nb = e->nbb;
-	while (++i < nb)
-	{
-		if (e->buff[0] > pivot)
-			push_a(e);
-		else
-			rotate_b(e);
-	}
-	nb = e->nbb;
+	i = pre_sort_b(e);
 	while (i-- > nb)
 		push_b(e);
-	while (e->nba > 1)
-	{
-		pivot = get_pivot(e->tab, e->nba);
-		i = -1;
-		nb = e->nba;
-		while (++i < nb)
-		{
-			if (e->tab[0] <= pivot)
-				push_b(e);
-			else
-				rotate_a(e);
-		}
-	}
+	algo2(e);
+	algo3(e);
+	if (e->nb_max >= 500)
+		algo4(e);
+	algo5(e);
 	refill_tab(e);
-	aff_tab(e);
 }
