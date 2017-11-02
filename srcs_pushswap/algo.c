@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 03:22:40 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/01 05:48:55 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/02 03:37:14 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -581,7 +581,7 @@ void	algo5(t_swap *e)
 	}
 }
 
-void	algo(t_swap *e)
+int	algo(t_swap *e)
 {
 	int		pivot;
 	int		i;
@@ -607,4 +607,5 @@ void	algo(t_swap *e)
 		algo4(e);
 	algo5(e);
 	refill_tab(e);
+	return (1);
 }

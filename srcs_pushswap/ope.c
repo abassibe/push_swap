@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 00:55:09 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/01 05:23:45 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/02 04:44:47 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	swap_a(t_swap *e)
 	e->count++;
 	e->sa++;
 	write (1, "sa\n", 3);
-//	visu(e);
 }
 
 void	swap_b(t_swap *e)
@@ -55,7 +54,6 @@ void	swap_b(t_swap *e)
 	e->count++;
 	e->sb++;
 	write (1, "sb\n", 3);
-//	visu(e);
 }
 
 void	swap_ab(t_swap *e)
@@ -70,7 +68,6 @@ void	swap_ab(t_swap *e)
 	e->buff[1] = tmp;
 	e->count++;
 	write (1, "ss\n", 3);
-//	visu(e);
 }
 
 void	push_a(t_swap *e)
@@ -97,7 +94,8 @@ void	push_a(t_swap *e)
 	e->count++;
 	e->pa++;
 	write (1, "pa\n", 3);
-//	visu(e);
+	if (e->visu)
+	visu(e);
 }
 
 void	push_b(t_swap *e)
@@ -124,5 +122,6 @@ void	push_b(t_swap *e)
 	e->count++;
 	e->pb++;
 	write (1, "pb\n", 3);
-//	visu(e);
+	if (e->visu)
+	visu(e);
 }

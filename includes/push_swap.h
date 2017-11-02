@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 04:12:59 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/01 01:18:42 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/02 02:57:08 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_swap
 	int				rb;
 	int				rra;
 	int				rrb;
+	int				visu;
 	void			*mlx;
 	void			*win;
 	void			*vimg;
@@ -57,7 +58,7 @@ void				rev_rot_a(t_swap *e);
 void				rev_rot_b(t_swap *e);
 void				rev_rot_ab(t_swap *e);
 int					check_sort(t_swap *e);
-void				algo(t_swap *e);
+int					algo(t_swap *e);
 void				visu(t_swap *e);
 int					ft_error(const char *str);
 
