@@ -1,18 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations2.c                                      :+:      :+:    :+:   */
+/*   for_the_norm.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/03 02:35:14 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/04 02:27:52 by abassibe         ###   ########.fr       */
+/*   Created: 2017/11/04 02:26:18 by abassibe          #+#    #+#             */
+/*   Updated: 2017/11/04 02:28:16 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-static void		rotate_a(t_swap *e)
+t_swap	*init_struct(int ac)
+{
+	t_swap	*e;
+
+	if (!(e = (t_swap *)ft_memalloc(sizeof(t_swap))))
+		ft_error("error malloc");
+	if (!(e->tab = (int *)ft_memalloc(sizeof(int) * ac)))
+		ft_error("error malloc");
+	if (!(e->buff = (int *)ft_memalloc(sizeof(int) * ac)))
+		ft_error("error malloc");
+	return (e);
+}
+
+void	check_sort(t_swap *e)
+{
+	int		i;
+
+	i = 0;
+	while (i < e->nb_max - 1)
+	{
+		if (e->tab[i] > e->tab[i + 1])
+			ft_error("KO");
+		i++;
+	}
+	if (e->nba == e->nb_max && e->nbb == 0)
+		ft_printf("OK\n");
+}
+
+void	swap_ab(t_swap *e)
+{
+	int		tmp;
+
+	tmp = e->tab[0];
+	e->tab[0] = e->tab[1];
+	e->tab[1] = tmp;
+	tmp = e->buff[0];
+	e->buff[0] = e->buff[1];
+	e->buff[1] = tmp;
+}
+
+void	rotate_ab(t_swap *e)
 {
 	int		tmp;
 	int		i;
@@ -25,13 +65,6 @@ static void		rotate_a(t_swap *e)
 		i++;
 	}
 	e->tab[i] = tmp;
-}
-
-static void		rotate_b(t_swap *e)
-{
-	int		tmp;
-	int		i;
-
 	i = 0;
 	tmp = e->buff[0];
 	while (i < e->nbb - 1)
@@ -42,7 +75,7 @@ static void		rotate_b(t_swap *e)
 	e->buff[i] = tmp;
 }
 
-static void		rev_rot_a(t_swap *e)
+void	rev_rot_ab(t_swap *e)
 {
 	int		tmp;
 	int		i;
@@ -57,13 +90,6 @@ static void		rev_rot_a(t_swap *e)
 		i--;
 	}
 	e->tab[0] = tmp;
-}
-
-static void		rev_rot_b(t_swap *e)
-{
-	int		tmp;
-	int		i;
-
 	if (e->nbb < 2)
 		return ;
 	i = e->nbb - 1;
@@ -74,20 +100,4 @@ static void		rev_rot_b(t_swap *e)
 		i--;
 	}
 	e->buff[0] = tmp;
-}
-
-void			do_op_next(t_swap *e, const char *str)
-{
-	if (!(ft_strncmp("ra\0", str, 3)))
-		rotate_a(e);
-	if (!(ft_strncmp("rb\0", str, 3)))
-		rotate_b(e);
-	if (!(ft_strncmp("rr\0", str, 3)))
-		rotate_ab(e);
-	if (!(ft_strncmp("rra\0", str, 4)))
-		rev_rot_a(e);
-	if (!(ft_strncmp("rrb\0", str, 4)))
-		rev_rot_b(e);
-	if (!(ft_strncmp("rrr\0", str, 4)))
-		rev_rot_ab(e);
 }

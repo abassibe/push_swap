@@ -6,7 +6,7 @@
 #    By: abassibe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 12:45:46 by abassibe          #+#    #+#              #
-#    Updated: 2017/11/01 01:31:50 by abassibe         ###   ########.fr        #
+#    Updated: 2017/11/04 02:52:19 by abassibe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,16 @@ NAME2 = push_swap
 SRCS =	checker.c \
 		operations.c \
 		operations2.c \
-		utils.c
+		utils.c \
+		for_the_norm.c
 
 SRCS2 = push_swap.c \
 		ope.c \
 		ope2.c \
 		algo.c \
+		algo2.c \
+		util.c \
+		main_algo_next.c \
 		visu.c
 
 OBJS = $(SRCS:.c=.o)

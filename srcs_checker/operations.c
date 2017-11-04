@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 00:55:09 by abassibe          #+#    #+#             */
-/*   Updated: 2017/10/20 05:19:47 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/04 02:24:57 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@ static void		swap_b(t_swap *e)
 
 	if (e->nbb < 2)
 		return ;
-	tmp = e->buff[0];
-	e->buff[0] = e->buff[1];
-	e->buff[1] = tmp;
-}
-
-void	swap_ab(t_swap *e)
-{
-	int		tmp;
-
-	tmp = e->tab[0];
-	e->tab[0] = e->tab[1];
-	e->tab[1] = tmp;
 	tmp = e->buff[0];
 	e->buff[0] = e->buff[1];
 	e->buff[1] = tmp;

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 04:12:59 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/02 02:57:08 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/04 02:51:28 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@ typedef struct		s_swap
 	int				nba;
 	int				nbb;
 	int				nb_max;
-	int				hig;
-	int				low_b;
-	int				count;
-	int				sa;
-	int				sb;
-	int				pa;
-	int				pb;
-	int				ra;
-	int				rb;
-	int				rra;
-	int				rrb;
 	int				visu;
 	void			*mlx;
 	void			*win;
@@ -57,11 +46,18 @@ void				rotate_ab(t_swap *e);
 void				rev_rot_a(t_swap *e);
 void				rev_rot_b(t_swap *e);
 void				rev_rot_ab(t_swap *e);
-int					check_sort(t_swap *e);
 int					algo(t_swap *e);
 void				visu(t_swap *e);
+void				algo_inf_five(t_swap *e);
+void				algo2(t_swap *e);
+void				algo3(t_swap *e);
+void				algo4(t_swap *e);
+void				algo4_next(t_swap *e, int count);
+void				algo5(t_swap *e);
+int					get_pivot(int *tab, const int nb);
+int					get_target(t_swap *e);
+t_swap				*init_struct(const int ac, const int visu);
+void				check_str_numbers(t_swap **e, const char *str, int visu);
 int					ft_error(const char *str);
-
-void				aff_tab(t_swap *e);
 
 #endif
