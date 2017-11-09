@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 01:23:51 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/04 02:37:24 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/04 05:47:01 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	algo_four(t_swap *e)
 
 void	algo_inf_five(t_swap *e)
 {
+	if (is_sort(e))
+		exit(1);
 	if (e->nb_max == 5)
 		algo_five(e);
 	else if (e->nb_max == 4)

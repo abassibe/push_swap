@@ -6,19 +6,21 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 03:22:40 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/04 02:53:32 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/04 05:49:39 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int				get_pivot(int *tab, const int nb)
+int				get_pivot(t_swap *e, int *tab, const int nb)
 {
 	int		total;
 	int		closer;
 	int		i;
 	int		ret;
 
+	if (e->nba == e->nb_max && is_sort(e))
+		exit(1);
 	total = 0;
 	closer = 2147483647;
 	i = -1;
@@ -93,7 +95,7 @@ static int		pre_sort_b(t_swap *e)
 	int		nb;
 
 	i = -1;
-	pivot = get_pivot(e->buff, e->nbb);
+	pivot = get_pivot(e, e->buff, e->nbb);
 	nb = e->nbb;
 	while (++i < nb)
 	{
@@ -111,7 +113,7 @@ int				algo(t_swap *e)
 	int		i;
 	int		nb;
 
-	pivot = get_pivot(e->tab, e->nb_max);
+	pivot = get_pivot(e, e->tab, e->nb_max);
 	i = -1;
 	while (++i < e->nb_max)
 	{

@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 04:12:16 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/04 02:23:22 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/09 01:05:15 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		check_numbers(const int ac, char **av)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	j = -1;
 	while (++i < ac)
 	{
@@ -77,6 +77,12 @@ static void		check_str_numbers(t_swap **e, const char *str)
 	long int	tmp;
 	int			i;
 
+	i = 0;
+	while (str[i] != '\0' && ((str[i] >= '0' &&
+					str[i] <= '9') || str[i] == ' '))
+		i++;
+	if (str[i] != '\0')
+		ft_error("error");
 	i = 0;
 	tab = ft_strsplit(str, ' ');
 	while (tab[i])

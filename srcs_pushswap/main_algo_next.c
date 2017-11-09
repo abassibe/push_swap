@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 02:43:20 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/04 02:48:17 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/04 05:44:15 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	algo2(t_swap *e)
 	int		nb;
 	int		nb2;
 
-	pivot = get_pivot(e->tab, e->nbb);
+	pivot = get_pivot(e, e->tab, e->nbb);
 	i = -1;
 	nb2 = 0;
 	nb = e->nbb;
@@ -50,7 +50,7 @@ void	algo3(t_swap *e)
 	i = -1;
 	nb = e->nbb;
 	nb2 = 0;
-	pivot = get_pivot(e->tab, e->nbb);
+	pivot = get_pivot(e, e->tab, e->nbb);
 	while (++i < nb - 1)
 	{
 		if (e->tab[0] < pivot)
@@ -76,7 +76,7 @@ void	algo4_next(t_swap *e, int count)
 
 	i = -1;
 	nb = 0;
-	pivot = get_pivot(e->buff, count);
+	pivot = get_pivot(e, e->buff, count);
 	while (++i < count)
 	{
 		if (e->buff[0] > pivot)
@@ -98,7 +98,7 @@ void	algo4(t_swap *e)
 	int		nb;
 	int		count;
 
-	pivot = get_pivot(e->tab, e->nba);
+	pivot = get_pivot(e, e->tab, e->nba);
 	i = -1;
 	nb = e->nba;
 	count = 0;
@@ -123,7 +123,7 @@ void	algo5(t_swap *e)
 
 	while (e->nba > 1)
 	{
-		pivot = get_pivot(e->tab, e->nba);
+		pivot = get_pivot(e, e->tab, e->nba);
 		i = -1;
 		nb = e->nba;
 		while (++i < nb)

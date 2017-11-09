@@ -6,7 +6,7 @@
 /*   By: abassibe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 04:12:59 by abassibe          #+#    #+#             */
-/*   Updated: 2017/11/04 02:51:28 by abassibe         ###   ########.fr       */
+/*   Updated: 2017/11/07 00:38:58 by abassibe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft.h"
 # include "../ressources/mlx.h"
-# include <stdio.h>
-# include <fcntl.h>
 
 typedef struct		s_swap
 {
@@ -54,10 +52,11 @@ void				algo3(t_swap *e);
 void				algo4(t_swap *e);
 void				algo4_next(t_swap *e, int count);
 void				algo5(t_swap *e);
-int					get_pivot(int *tab, const int nb);
+int					get_pivot(t_swap *e, int *tab, const int nb);
 int					get_target(t_swap *e);
 t_swap				*init_struct(const int ac, const int visu);
 void				check_str_numbers(t_swap **e, const char *str, int visu);
+int					is_sort(t_swap *e);
 int					ft_error(const char *str);
 
 #endif
